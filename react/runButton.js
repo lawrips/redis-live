@@ -35,4 +35,4 @@ var RunButton = React.createClass({
     }
 });
 
-
+module.exports = RunButton;

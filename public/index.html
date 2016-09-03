@@ -62,27 +62,5 @@
     </div>
 </div>
 
-<script src="react/redisResults.js"></script>
-<script src="react/runButton.js"></script>
-<script src="react/autosuggest.js"></script>
-
-<script type="text/babel">
-    var Output = ReactDOM.render(
-        <RedisResults />,
-        document.getElementById('redisResultsTextarea')
-    );
-
-    var Input = ReactDOM.render(
-        <CommandTextBox />,
-        document.getElementById('commandTextBox')
-    );
-
-    var Run = ReactDOM.render(
-        <RunButton/>,
-        document.getElementById('runButton')
-    );
-
-    Run.setOutput(Output);
-    Run.setInput(Input);
-</script>
+<script src="bundle.js"></script>
 

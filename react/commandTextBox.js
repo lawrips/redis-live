@@ -94,3 +94,4 @@ class CommandTextBox extends React.Component { // eslint-disable-line no-undef
   }
 }
 
+module.exports = CommandTextBox;

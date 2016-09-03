@@ -27,3 +27,4 @@ var RedisResults = React.createClass({
     }
 });
 
+module.exports = RedisResults;

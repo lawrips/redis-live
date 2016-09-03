@@ -111,3 +111,5 @@ var CommandTextBox = function (_React$Component) {
 
   return CommandTextBox;
 }(React.Component);
+
+module.exports = CommandTextBox;
