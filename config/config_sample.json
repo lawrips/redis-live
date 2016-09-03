@@ -1,0 +1,11 @@
+{
+   "cluster":[
+        {
+            "host": "ipaddr",
+            "port": 7000 
+        }
+    ],
+    "options": {
+        "password":"password"
+    }
+}

@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="//fb.me/react-0.14.3.js"></script>
+<script src="//fb.me/react-dom-0.14.3.js"></script>
+<script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+
+
+<script src='https://cdn.rawgit.com/moroshko/react-autosuggest/0881eb3/dist/standalone/autosuggest.min.js'></script>
+<link rel="stylesheet" type="text/css" href="app.css">
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 style="font-weight: lighter;">
+                    <span>Redis LIVE</span>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 style="font-weight: lighter;">
+                    <span>Redis Command</span>
+                </h4>
+            </div>
+            <div class="panel-body"">
+                <div class="row">            
+                    <div class="form-group col-lg-4">
+                        <div class="form-group">
+                            <label>
+                                Enter command:
+                            </label>
+                            <div id="commandTextBox"></div>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-2" style="position:relative; bottom:-25px;">
+                        <div class="form-group">
+                            <div id="runButton"></div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="row">            
+                    <div class="form-group col-lg-8">
+                        <div class="form-group">
+                            <label>
+                                Results
+                            </label>
+                            <div id="redisResultsTextarea" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="react/redisResults.js"></script>
+<script src="react/runButton.js"></script>
+<script src="react/autosuggest.js"></script>
+
+<script type="text/babel">
+    var Output = ReactDOM.render(
+        <RedisResults />,
+        document.getElementById('redisResultsTextarea')
+    );
+
+    var Input = ReactDOM.render(
+        <CommandTextBox />,
+        document.getElementById('commandTextBox')
+    );
+
+    var Run = ReactDOM.render(
+        <RunButton/>,
+        document.getElementById('runButton')
+    );
+
+    Run.setOutput(Output);
+    Run.setInput(Input);
+</script>
+

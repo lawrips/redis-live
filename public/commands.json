@@ -1,0 +1,8 @@
+[{"name": "append"},
+{"name":"auth"},
+{"name":"bgrewriteaof"},
+{"name":"bgsave"},
+{"name":"sadd"},
+{"name":"cluster"},
+{"name":"add"},
+{"name":"get"}]
