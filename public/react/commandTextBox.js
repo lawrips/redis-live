@@ -10,7 +10,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /* eslint-disable react/react-in-jsx-scope */
 
-var commands = [{ "name": "append" }, { "name": "add" }, { "name": "auth" }, { "name": "bgrewriteaof" }, { "name": "bgsave" }, { "name": "cluster" }, { "name": "get" }, { "name": "hget" }, { "name": "hgetall" }, { "name": "sadd" }, { "name": "set" }, { "name": "smembers" }];
+var commands = [{ "name": "append" }, { "name": "add" }, { "name": "auth" }, { "name": "bgrewriteaof" }, { "name": "bgsave" }, { "name": "cluster" }, { "name": "GET key" }, { "name": "HGET key field" }, { "name": "HGETALL key" }, { "name": "SADD key member [member ...]" }, { "name": "SET key value [EX seconds] [PX milliseconds] [NX|XX]" }, { "name": "SMEMBERS key" }];
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {

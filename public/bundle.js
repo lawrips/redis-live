@@ -47,7 +47,8 @@
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
-	module.exports = __webpack_require__(4);
+	__webpack_require__(4);
+	module.exports = __webpack_require__(5);
 
 
 /***/ },
@@ -66,7 +67,7 @@
 
 	/* eslint-disable react/react-in-jsx-scope */
 
-	var commands = [{ "name": "append" }, { "name": "add" }, { "name": "auth" }, { "name": "bgrewriteaof" }, { "name": "bgsave" }, { "name": "cluster" }, { "name": "get" }, { "name": "hget" }, { "name": "hgetall" }, { "name": "sadd" }, { "name": "set" }, { "name": "smembers" }];
+	var commands = [{ "name": "append" }, { "name": "add" }, { "name": "auth" }, { "name": "bgrewriteaof" }, { "name": "bgsave" }, { "name": "cluster" }, { "name": "GET key" }, { "name": "HGET key field" }, { "name": "HGETALL key" }, { "name": "SADD key member [member ...]" }, { "name": "SET key value [EX seconds] [PX milliseconds] [NX|XX]" }, { "name": "SMEMBERS key" }];
 
 	// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 	function escapeRegexCharacters(str) {
@@ -179,6 +180,7 @@
 	var RedisResults = __webpack_require__(3);
 	var CommandTextBox = __webpack_require__(1);
 	var RunButton = __webpack_require__(4);
+	var ServerStatus = __webpack_require__(5);
 
 	var Output = ReactDOM.render(React.createElement(RedisResults, null), document.getElementById('redisResultsTextarea'));
 
@@ -186,8 +188,11 @@
 
 	var Run = ReactDOM.render(React.createElement(RunButton, null), document.getElementById('runButton'));
 
+	var Status = ReactDOM.render(React.createElement(ServerStatus, null), document.getElementById('serverStatus'));
+
 	Run.setOutput(Output);
 	Run.setInput(Input);
+	Status.initialize();
 
 /***/ },
 /* 3 */
@@ -275,6 +280,81 @@
 	});
 
 	module.exports = RunButton;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var ServerStatus = React.createClass({
+	    displayName: 'ServerStatus',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            status: ''
+	        };
+	    },
+
+	    initialize: function initialize() {
+	        this.serverRequest = $.post('/command', { command: 'info' }, function (result) {
+	            this.setState({
+	                status: result
+	            });
+	        }.bind(this));
+	    },
+
+	    render: function render() {
+	        if (this.state.status) {
+	            var table = _renderStatus(this.state.status);
+	            return React.createElement(
+	                'table',
+	                null,
+	                React.createElement(
+	                    'tbody',
+	                    null,
+	                    table.map(function (row, i) {
+	                        return React.createElement(
+	                            'tr',
+	                            { key: i },
+	                            row.map(function (col, j) {
+	                                return React.createElement(
+	                                    'td',
+	                                    { key: j },
+	                                    col
+	                                );
+	                            })
+	                        );
+	                    })
+	                )
+	            );
+	        } else {
+	            return React.createElement(
+	                'div',
+	                null,
+	                'Results will be displayed here'
+	            );
+	        }
+	    }
+	});
+
+	function _renderStatus(status) {
+	    var lines = status.split('\n');
+	    var table = [];
+	    lines.forEach(function (line) {
+	        if (line) {
+	            var pair = line.split(':');
+	            var obj = [];
+	            obj.push(pair[0]);
+	            obj.push(pair[1]);
+	            table.push(obj);
+	        }
+	    });
+
+	    return table;
+	}
+
+	module.exports = ServerStatus;
 
 /***/ }
 /******/ ]);

@@ -3,6 +3,7 @@
 let RedisResults = require('./redisResults');
 let CommandTextBox = require('./commandTextBox');
 let RunButton = require('./runButton');
+let ServerStatus = require('./serverStatus');
 
 var Output = ReactDOM.render(
     <RedisResults />,
@@ -19,5 +20,11 @@ var Run = ReactDOM.render(
     document.getElementById('runButton')
 );
 
+var Status = ReactDOM.render(
+    <ServerStatus/>,
+    document.getElementById('serverStatus')
+);
+
 Run.setOutput(Output);
 Run.setInput(Input);
+Status.initialize();
