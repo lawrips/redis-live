@@ -10,45 +10,53 @@
 <link rel="stylesheet" type="text/css" href="app.css">
 
 <style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+    table, th, td {
+        border: 1px solid lightgray;
+        font-size: 13px;
+    }
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
+    table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
 
-tr:nth-child(even){background-color: #f2f2f2}
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
+    td {
+        word-wrap:break-word        
+    }
 
-tr:hover{background-color:lightblue}
+    tr:nth-child(even){background-color: #f2f2f2}
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    tr:hover{background-color:lightblue}
 </style>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 style="font-weight: lighter;">
+                <h2 style="font-weight: lighter;">
                     <span>Redis LIVE</span>
-                </h3>
+                </h2>
             </div>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 style="font-weight: lighter;">
-                    <span>Redis Command</span>
-                </h4>
+                <span style="font-size: x-large; font-weight: lighter;">Command Line</span>
             </div>
             <div class="panel-body"">
                 <div class="row">            
@@ -85,12 +93,11 @@ tr:hover{background-color:lightblue}
 
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-10">
         <div class="panel panel-default"  id="serverHeading">
             <div class="panel-heading">
-                <h4 style="font-weight: lighter;">
-                    <span>Server Status</span>
-                </h4>
+                <span style="font-size: x-large; font-weight: lighter;">Server Status</span>
+                <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to expand)</span>
             </div>
             <div class="panel-body"">
                 <div class="row">            
@@ -106,16 +113,15 @@ tr:hover{background-color:lightblue}
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default"  id="serverHeading">
+    <div class="col-lg-10">
+        <div class="panel panel-default"  id="clusterHeading">
             <div class="panel-heading">
-                <h4 style="font-weight: lighter;">
-                    <span>Cluster Status</span>
-                </h4>
+                <span style="font-size: x-large; font-weight: lighter;">Cluster Status</span>
+                <span id="clusterStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
             </div>
             <div class="panel-body"">
                 <div class="row">            
-                    <div class="form-group col-lg-4">
+                    <div class="form-group col-lg-12">
                         <div class="form-group">
                             <div id="clusterStatus"></div>
                         </div>
@@ -127,13 +133,24 @@ tr:hover{background-color:lightblue}
 </div>
 
 <script>
-console.log('here')
+let serverStatusToggle = true;
+$('#serverStatus').slideToggle();
 $('#serverHeading').click(function() {
-    console.log('here2')
-    $('#serverStatus').toggle();
+    serverStatusToggle = !serverStatusToggle;
+    if (serverStatusToggle) $('#serverStatusToggle').text('(click to expand)');
+    else $('#serverStatusToggle').text('(click to hide)');
+    $('#serverStatus').slideToggle();
+})
+
+let clusterStatusToggle = false;
+$('#clusterHeading').click(function() {
+    clusterStatusToggle = !clusterStatusToggle;
+    if (clusterStatusToggle) $('#clusterStatusToggle').text('(click to expand)');
+    else $('#cclusterStatus').text('(click to hide)');
+    $('#clusterStatus').slideToggle();
 })
 
 </script>
 
-<script src="bundle.js"></script>
+<script src="react/bundle.js"></script>
 

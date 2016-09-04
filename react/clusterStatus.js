@@ -19,35 +19,58 @@ var ClusterStatus = React.createClass({
 
     render: function() {
         if (this.state.status) {
-            let table = _renderStatus(this.state.status);
-            return (
-                <table>
-                    <thead>
-                        <tr>
-                            <td>id</td>
-                            <td>ip:port</td>
-                            <td>flags</td>
-                            <td>master</td>
-                            <td>ping-sent</td>
-                            <td>pong-recv</td>
-                            <td>config-epoch</td>
-                            <td>link-state</td>
-                            <td>slot</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {table.map((row, i) => {
-                            return (
-                                <tr key={i}>
-                                    {row.map(function(col, j) {
-                                        return <td key={j}>{col}</td>;
-                                    })}
+            let cluster = _renderStatus(this.state.status);
+            let tables = [];
+            let i=0;
+
+            Object.keys(cluster).forEach((key) => {
+                tables.push(
+                    <div>
+                        
+                        <h3>Hash slot: {cluster[key][0][8]}</h3>
+                        <table id={i++}>
+                            <thead>
+                                <tr>
+                                    <td>id</td>
+                                    <td>ip:port</td>
+                                    <td>flags</td>
+                                    <td>master</td>
+                                    <td>ping-sent</td>
+                                    <td>pong-recv</td>
+                                    <td>config-epoch</td>
+                                    <td>link-state</td>
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            );
+                            </thead>
+                            <tbody>
+                                {cluster[key].map((row, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            {row.map(function(col, j) {
+                                                if (j < 8) {
+                                                let style = {};
+                                                if (col == 'connected') {
+                                                    style.backgroundColor = '#90EE90';
+                                                } 
+                                                else if (col == 'disconnected') {
+                                                    style.backgroundColor = '#FFC1C1';                                            
+                                                }
+
+                                                return <td style={style} key={j}>{col}</td>;
+                                                }
+                                            })}
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                        <br/>
+                    </div>
+                );
+            });
+
+            console.log(tables);
+
+            return <div>{tables}</div>;
         }
         else {
             return <div>Results will be displayed here</div>;
@@ -56,15 +79,43 @@ var ClusterStatus = React.createClass({
 });
 
 function _renderStatus(status) {
-    let lines = status.split('\n');
+    let array = status.split('\n');
     let table = [];
-    lines.forEach((line) => {
+    // put everything in an array
+    array.forEach((line) => {
         if (line) {
             table.push(line.split(' '));
         }
     });
     
-    return table;
+    // organize into sets, grouped by the master
+    let clusters = {};
+    table.forEach((row) => {
+        let master = row[3] == '-' ? row[0] : row[3];
+
+        if (!clusters[master]) {
+            clusters[master] = [];
+        }
+
+        clusters[master].push(row);
+    });
+
+    // order items in each set
+    Object.keys(clusters).forEach((key) => {
+        clusters[key] = clusters[key].sort((a,b) => {
+            if (a[[3] > b[3]]) {
+                return -1
+            }
+            else if (a[3] > b[3]) {
+                return 1;
+            }
+            return 0;
+        }); 
+    });
+
+
+
+    return clusters;
 
 }
 
