@@ -39,4 +39,4 @@ jspm_packages
 # Custom
 config/config.json
 .vscode
-build
+bin

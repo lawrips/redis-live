@@ -9,3 +9,28 @@ Planned features:
 * Server stats 
 * Cluster support and info
 * Authentication 
+
+
+Still changing daily, so not worth trying yet - but if you want to give it a shot, feel free. 
+
+To run:
+
+1. Create a ./config/config.json with the following values (currently cluster only):
+```
+{
+   "cluster":[
+        {
+            "host": "ahostinthecluster",
+            "port": 6379
+        }
+    ],
+    "options": {
+        "password":"clusterpassword"
+    }
+}
+```
+
+2. Then:
+```
+npm start
+```
