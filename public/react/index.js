@@ -4,6 +4,7 @@ var RedisResults = require('./redisResults');
 var CommandTextBox = require('./commandTextBox');
 var RunButton = require('./runButton');
 var ServerStatus = require('./serverStatus');
+var ClusterStatus = require('./clusterStatus');
 
 var Output = ReactDOM.render(React.createElement(RedisResults, null), document.getElementById('redisResultsTextarea'));
 
@@ -13,6 +14,9 @@ var Run = ReactDOM.render(React.createElement(RunButton, null), document.getElem
 
 var Status = ReactDOM.render(React.createElement(ServerStatus, null), document.getElementById('serverStatus'));
 
+var Cluster = ReactDOM.render(React.createElement(ClusterStatus, null), document.getElementById('clusterStatus'));
+
 Run.setOutput(Output);
 Run.setInput(Input);
 Status.initialize();
+Cluster.initialize();

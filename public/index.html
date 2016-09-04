@@ -9,8 +9,29 @@
 <script src='https://cdn.rawgit.com/moroshko/react-autosuggest/0881eb3/dist/standalone/autosuggest.min.js'></script>
 <link rel="stylesheet" type="text/css" href="app.css">
 
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:hover{background-color:lightblue}
+</style>
+
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 style="font-weight: lighter;">
@@ -22,7 +43,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 style="font-weight: lighter;">
@@ -64,8 +85,8 @@
 
 
 <div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default">
+    <div class="col-lg-12">
+        <div class="panel panel-default"  id="serverHeading">
             <div class="panel-heading">
                 <h4 style="font-weight: lighter;">
                     <span>Server Status</span>
@@ -84,7 +105,35 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default"  id="serverHeading">
+            <div class="panel-heading">
+                <h4 style="font-weight: lighter;">
+                    <span>Cluster Status</span>
+                </h4>
+            </div>
+            <div class="panel-body"">
+                <div class="row">            
+                    <div class="form-group col-lg-4">
+                        <div class="form-group">
+                            <div id="clusterStatus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+console.log('here')
+$('#serverHeading').click(function() {
+    console.log('here2')
+    $('#serverStatus').toggle();
+})
+
+</script>
 
 <script src="bundle.js"></script>
 

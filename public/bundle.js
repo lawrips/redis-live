@@ -48,11 +48,136 @@
 	__webpack_require__(2);
 	__webpack_require__(3);
 	__webpack_require__(4);
-	module.exports = __webpack_require__(5);
+	__webpack_require__(5);
+	module.exports = __webpack_require__(6);
 
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var ClusterStatus = React.createClass({
+	    displayName: 'ClusterStatus',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            status: ''
+	        };
+	    },
+
+	    initialize: function initialize() {
+	        this.serverRequest = $.post('/command', { command: 'cluster nodes' }, function (result) {
+	            this.setState({
+	                status: result
+	            });
+	        }.bind(this));
+	    },
+
+	    render: function render() {
+	        if (this.state.status) {
+	            var table = _renderStatus(this.state.status);
+	            return React.createElement(
+	                'table',
+	                null,
+	                React.createElement(
+	                    'thead',
+	                    null,
+	                    React.createElement(
+	                        'tr',
+	                        null,
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'id'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'ip:port'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'flags'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'master'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'ping-sent'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'pong-recv'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'config-epoch'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'link-state'
+	                        ),
+	                        React.createElement(
+	                            'td',
+	                            null,
+	                            'slot'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'tbody',
+	                    null,
+	                    table.map(function (row, i) {
+	                        return React.createElement(
+	                            'tr',
+	                            { key: i },
+	                            row.map(function (col, j) {
+	                                return React.createElement(
+	                                    'td',
+	                                    { key: j },
+	                                    col
+	                                );
+	                            })
+	                        );
+	                    })
+	                )
+	            );
+	        } else {
+	            return React.createElement(
+	                'div',
+	                null,
+	                'Results will be displayed here'
+	            );
+	        }
+	    }
+	});
+
+	function _renderStatus(status) {
+	    var lines = status.split('\n');
+	    var table = [];
+	    lines.forEach(function (line) {
+	        if (line) {
+	            table.push(line.split(' '));
+	        }
+	    });
+
+	    return table;
+	}
+
+	module.exports = ClusterStatus;
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -67,7 +192,7 @@
 
 	/* eslint-disable react/react-in-jsx-scope */
 
-	var commands = [{ "name": "append" }, { "name": "add" }, { "name": "auth" }, { "name": "bgrewriteaof" }, { "name": "bgsave" }, { "name": "cluster" }, { "name": "GET key" }, { "name": "HGET key field" }, { "name": "HGETALL key" }, { "name": "SADD key member [member ...]" }, { "name": "SET key value [EX seconds] [PX milliseconds] [NX|XX]" }, { "name": "SMEMBERS key" }];
+	var commands = [{ "name": "append" }, { "name": "add" }, { "name": "auth" }, { "name": "bgrewriteaof" }, { "name": "bgsave" }, { "name": "cluster" }, { "name": "get key" }, { "name": "hget key field" }, { "name": "hgetall key" }, { "name": "sadd key member [member ...]" }, { "name": "set key value [EX seconds] [PX milliseconds] [NX|XX]" }, { "name": "smembers key" }];
 
 	// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 	function escapeRegexCharacters(str) {
@@ -172,15 +297,16 @@
 	module.exports = CommandTextBox;
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var RedisResults = __webpack_require__(3);
-	var CommandTextBox = __webpack_require__(1);
-	var RunButton = __webpack_require__(4);
-	var ServerStatus = __webpack_require__(5);
+	var RedisResults = __webpack_require__(4);
+	var CommandTextBox = __webpack_require__(2);
+	var RunButton = __webpack_require__(5);
+	var ServerStatus = __webpack_require__(6);
+	var ClusterStatus = __webpack_require__(1);
 
 	var Output = ReactDOM.render(React.createElement(RedisResults, null), document.getElementById('redisResultsTextarea'));
 
@@ -190,12 +316,15 @@
 
 	var Status = ReactDOM.render(React.createElement(ServerStatus, null), document.getElementById('serverStatus'));
 
+	var Cluster = ReactDOM.render(React.createElement(ClusterStatus, null), document.getElementById('clusterStatus'));
+
 	Run.setOutput(Output);
 	Run.setInput(Input);
 	Status.initialize();
+	Cluster.initialize();
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -232,7 +361,7 @@
 	module.exports = RedisResults;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -282,7 +411,7 @@
 	module.exports = RunButton;
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	'use strict';

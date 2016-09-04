@@ -6,12 +6,12 @@ const commands = [{"name": "append"},
 {"name":"bgrewriteaof"},
 {"name":"bgsave"},
 {"name":"cluster"},
-{"name":"GET key"},
-{"name":"HGET key field"},
-{"name":"HGETALL key"},
-{"name":"SADD key member [member ...]"},
-{"name":"SET key value [EX seconds] [PX milliseconds] [NX|XX]"},
-{"name":"SMEMBERS key"}
+{"name":"get key"},
+{"name":"hget key field"},
+{"name":"hgetall key"},
+{"name":"sadd key member [member ...]"},
+{"name":"set key value [EX seconds] [PX milliseconds] [NX|XX]"},
+{"name":"smembers key"}
 ];
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
