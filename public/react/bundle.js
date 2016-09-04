@@ -58,6 +58,8 @@
 
 	'use strict';
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 	var ClusterStatus = React.createClass({
 	    displayName: 'ClusterStatus',
 
@@ -76,82 +78,118 @@
 	    },
 
 	    render: function render() {
+	        var _this = this;
+
 	        if (this.state.status) {
-	            var table = _renderStatus(this.state.status);
-	            return React.createElement(
-	                'table',
-	                null,
-	                React.createElement(
-	                    'thead',
-	                    null,
-	                    React.createElement(
-	                        'tr',
+	            var _ret = function () {
+	                var cluster = _renderStatus(_this.state.status);
+	                var tables = [];
+	                var i = 0;
+
+	                Object.keys(cluster).forEach(function (key) {
+	                    tables.push(React.createElement(
+	                        'div',
 	                        null,
 	                        React.createElement(
-	                            'td',
+	                            'h3',
 	                            null,
-	                            'id'
+	                            'Hash slot: ',
+	                            cluster[key][0][8]
 	                        ),
 	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'ip:port'
+	                            'table',
+	                            { id: i++ },
+	                            React.createElement(
+	                                'thead',
+	                                null,
+	                                React.createElement(
+	                                    'tr',
+	                                    null,
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'id'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'ip:port'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'flags'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'master'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'ping-sent'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'pong-recv'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'config-epoch'
+	                                    ),
+	                                    React.createElement(
+	                                        'td',
+	                                        null,
+	                                        'link-state'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'tbody',
+	                                null,
+	                                cluster[key].map(function (row, i) {
+	                                    return React.createElement(
+	                                        'tr',
+	                                        { key: i },
+	                                        row.map(function (col, j) {
+	                                            if (j < 8) {
+	                                                var style = {};
+	                                                if (col == 'connected') {
+	                                                    style.backgroundColor = '#90EE90';
+	                                                } else if (col == 'disconnected') {
+	                                                    style.backgroundColor = '#FFC1C1';
+	                                                }
+
+	                                                return React.createElement(
+	                                                    'td',
+	                                                    { style: style, key: j },
+	                                                    col
+	                                                );
+	                                            }
+	                                        })
+	                                    );
+	                                })
+	                            )
 	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'flags'
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'master'
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'ping-sent'
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'pong-recv'
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'config-epoch'
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'link-state'
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            'slot'
-	                        )
+	                        React.createElement('br', null)
+	                    ));
+	                });
+
+	                console.log(tables);
+
+	                return {
+	                    v: React.createElement(
+	                        'div',
+	                        null,
+	                        tables
 	                    )
-	                ),
-	                React.createElement(
-	                    'tbody',
-	                    null,
-	                    table.map(function (row, i) {
-	                        return React.createElement(
-	                            'tr',
-	                            { key: i },
-	                            row.map(function (col, j) {
-	                                return React.createElement(
-	                                    'td',
-	                                    { key: j },
-	                                    col
-	                                );
-	                            })
-	                        );
-	                    })
-	                )
-	            );
+	                };
+	            }();
+
+	            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	        } else {
 	            return React.createElement(
 	                'div',
@@ -163,15 +201,40 @@
 	});
 
 	function _renderStatus(status) {
-	    var lines = status.split('\n');
+	    var array = status.split('\n');
 	    var table = [];
-	    lines.forEach(function (line) {
+	    // put everything in an array
+	    array.forEach(function (line) {
 	        if (line) {
 	            table.push(line.split(' '));
 	        }
 	    });
 
-	    return table;
+	    // organize into sets, grouped by the master
+	    var clusters = {};
+	    table.forEach(function (row) {
+	        var master = row[3] == '-' ? row[0] : row[3];
+
+	        if (!clusters[master]) {
+	            clusters[master] = [];
+	        }
+
+	        clusters[master].push(row);
+	    });
+
+	    // order items in each set
+	    Object.keys(clusters).forEach(function (key) {
+	        clusters[key] = clusters[key].sort(function (a, b) {
+	            if (a[[3] > b[3]]) {
+	                return -1;
+	            } else if (a[3] > b[3]) {
+	                return 1;
+	            }
+	            return 0;
+	        });
+	    });
+
+	    return clusters;
 	}
 
 	module.exports = ClusterStatus;
