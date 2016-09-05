@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 })); 
 console.log(nconf.get('cluster'))
 
-
 app.listen(9999);
 
 let cluster = new Redis.Cluster(nconf.get('cluster'), 
@@ -26,7 +25,19 @@ let cluster = new Redis.Cluster(nconf.get('cluster'),
 });
 
 app.get('/', (req, res) => {
-    return res.render('index');
+    let hosts = nconf.get('cluster').map((i) => i.host + ':' + i.port);
+    return res.render('index', {hosts: JSON.stringify(hosts)});
+});
+
+app.post('/info', (req, res) => {
+    let redisOptions = nconf.get('options');
+    redisOptions.host = req.body.host.split(':')[0];
+    redisOptions.port = req.body.host.split(':').length > 1 ? req.body.host.split(':')[1] : 6379;
+    let redis = new Redis(redisOptions);
+
+    redis.info((err, result) => {
+        return res.send(result);
+    }); 
 });
 
 app.post('/command', (req, res) => {
@@ -40,19 +51,6 @@ app.post('/command', (req, res) => {
         if (result[0].length <= 1) return res.send('bad');
         return res.send(result[0][1]);
     });
-
-/*    if (commands[0] == 'get') {
-        cluster.get(commands.slice(1).join(' '), (err, result) => {
-            console.log('got result: ' + result);
-            return res.send(result);
-        });
-    }
-
-    else if (commands[0] == 'set') {
-        console.log(commands.slice(1).join(' '))
-        cluster.set(commands[1], commands[2]);
-        return res.send('ok');
-    }*/
 });
 
 
