@@ -6,7 +6,10 @@ var app = express()
 var bodyParser = require('body-parser')
 var Redis = require('ioredis')
 var nconf = require('nconf');
-nconf.env().file({file: './config/config.json'})
+nconf.env().file({file: './config/config.json'});
+
+var commands = require('./lib/modules/commands');
+
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars'); 
@@ -26,7 +29,7 @@ let cluster = new Redis.Cluster(nconf.get('cluster'),
 
 app.get('/', (req, res) => {
     let hosts = nconf.get('cluster').map((i) => i.host + ':' + i.port);
-    return res.render('index', {hosts: JSON.stringify(hosts)});
+    return res.render('index', {commands: JSON.stringify(commands.get()), hosts: JSON.stringify(hosts)});
 });
 
 app.post('/info', (req, res) => {

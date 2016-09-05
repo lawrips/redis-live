@@ -42,10 +42,10 @@
 
 <div class="row">
     <div class="col-lg-10">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2 style="font-weight: lighter;">
-                    <span>Redis LIVE</span>
+                    <span>Redis LIVE - a fast & simple Redis dashboard</span>
                 </h2>
             </div>
         </div>
@@ -137,6 +137,7 @@
 
 <script>
 let serverStatusToggle = false;
+$('#serverStatus').toggle();
 $('#serverHeading').click(function() {
     serverStatusToggle = !serverStatusToggle;
     if (serverStatusToggle) $('#serverStatusToggle').text('(click to expand)');
@@ -154,6 +155,7 @@ $('#clusterHeading').click(function() {
 
 // load hosts to be accessed later
 let hosts = {{{hosts}}}
+let commands = {{{commands}}}
 </script>
 
 <script src="react/bundle.js">
