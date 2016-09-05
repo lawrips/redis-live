@@ -94,14 +94,17 @@
 
 <div class="row">
     <div class="col-lg-10">
-        <div class="panel panel-default"  id="serverHeading">
-            <div class="panel-heading">
+        <div class="panel panel-default" >
+            <div class="panel-heading"  id="serverHeading">
                 <span style="font-size: x-large; font-weight: lighter;">Server Status</span>
                 <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to expand)</span>
             </div>
             <div class="panel-body"">
                 <div class="row">            
-                    <div class="form-group col-lg-4">
+                    <div class="form-group col-lg-10">
+                        <div class="form-group">
+                            <div id="serverSelector"></div>
+                        </div>
                         <div class="form-group">
                             <div id="serverStatus"></div>
                         </div>
@@ -133,8 +136,7 @@
 </div>
 
 <script>
-let serverStatusToggle = true;
-$('#serverStatus').slideToggle();
+let serverStatusToggle = false;
 $('#serverHeading').click(function() {
     serverStatusToggle = !serverStatusToggle;
     if (serverStatusToggle) $('#serverStatusToggle').text('(click to expand)');
@@ -150,7 +152,10 @@ $('#clusterHeading').click(function() {
     $('#clusterStatus').slideToggle();
 })
 
+// load hosts to be accessed later
+let hosts = {{{hosts}}}
 </script>
 
-<script src="react/bundle.js"></script>
+<script src="react/bundle.js">
+</script>
 
