@@ -9,36 +9,6 @@
 <script src='https://cdn.rawgit.com/moroshko/react-autosuggest/0881eb3/dist/standalone/autosuggest.min.js'></script>
 <link rel="stylesheet" type="text/css" href="app.css">
 
-<style>
-    table, th, td {
-        border: 1px solid lightgray;
-        font-size: 13px;
-    }
-
-    table {
-        border-collapse: collapse;
-        table-layout: fixed;
-        width: 100%;
-    }
-
-    th, td {
-        text-align: left;
-        padding: 8px;
-    }
-
-    td {
-        word-wrap:break-word        
-    }
-
-    tr:nth-child(even){background-color: #f2f2f2}
-
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    tr:hover{background-color:lightblue}
-</style>
 
 <div class="row">
     <div class="col-lg-10">
@@ -58,27 +28,27 @@
             <div class="panel-heading">
                 <span style="font-size: x-large; font-weight: lighter;">Command Line</span>
             </div>
-            <div class="panel-body"">
-                <div class="row">            
-                    <div class="form-group col-lg-4">
-                        <div class="form-group">
-                            <label>
-                                Enter command:
-                            </label>
-                            <div id="commandTextBox"></div>
-                        </div>
+            <div class="panel-body">
+                <div class="row" style="width:80%;" >            
+                    <div class="form-group  col-lg-10">
+                        <label>
+                            Enter command:
+                        </label>
+                        <div id="commandInput"></div>
                     </div>
-                    <div class="form-group col-lg-2" style="position:relative; bottom:-25px;">
+                </div>
+                <div class="row" >            
+                    <div class="form-group col-lg-2">
                         <div class="form-group">
                             <div id="runButton"></div>
                         </div>
                     </div>
-                    <br>
                 </div>
                 <div class="row">            
                     <div class="form-group col-lg-8">
                         <div class="form-group">
                             <label>
+                                <br>
                                 Results
                             </label>
                             <div id="redisResultsTextarea" >
