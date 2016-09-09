@@ -7,8 +7,9 @@ Planned features:
 * Autocompletion for commands
 * Free form querying (e.g. "SET hello world", "GET hello")
 * Server stats 
-* Cluster support and info
+* Cluster support and status
 * Authentication 
+* Standalone client library
 
 
 Still changing daily, so not worth trying yet - but if you want to give it a shot, feel free. 

@@ -124,10 +124,27 @@ $('#clusterHeading').click(function() {
 })
 
 // load hosts to be accessed later
-let hosts = {{{hosts}}}
-let commands = {{{commands}}}
 </script>
 
-<script src="react/bundle.js">
+
+<script>
+    // initialize redis obj
+    var redisLive = {
+        // the list of hosts 
+        hosts : {{{hosts}}},
+        // list of supported commands
+        commands: {{{commands}}},
+        
+        // ui components
+        resultsTextArea : document.getElementById('redisResultsTextarea'),
+        commandInput : document.getElementById('commandInput'),
+        runButton : document.getElementById('runButton'),
+        serverStatus : document.getElementById('serverStatus'),
+        clusterStatus : document.getElementById('clusterStatus'),
+    }
 </script>
+
+<script src="/react/bundle.js">
+</script>
+
 
