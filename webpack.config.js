@@ -21,6 +21,11 @@ var config = {
             query: {
                 presets: ['react', 'es2015', 'stage-0'] 
             }
+        },
+        {
+            test: /\.json$/,
+            exclude: /node_modules/,
+            loader: 'json-loader'
         }
         ]
     },
