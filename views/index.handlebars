@@ -29,30 +29,21 @@
                 <span style="font-size: x-large; font-weight: lighter;">Command Line</span>
             </div>
             <div class="panel-body">
-                <div class="row" style="width:80%;" >            
-                    <div class="form-group  col-lg-10">
+                <div class="row" >            
+                    <div class="form-group col-lg-10">
                         <label>
                             Enter command:
                         </label>
                         <div id="commandInput"></div>
                     </div>
                 </div>
-                <div class="row" >            
-                    <div class="form-group col-lg-2">
-                        <div class="form-group">
-                            <div id="runButton"></div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">            
                     <div class="form-group col-lg-8">
-                        <div class="form-group">
-                            <label>
-                                <br>
-                                Results
-                            </label>
-                            <div id="redisResultsTextarea" >
-                            </div>
+                        <label>
+                            <br>
+                            Results
+                        </label>
+                        <div id="commandOutput" >
                         </div>
                     </div>
                 </div>
@@ -126,25 +117,19 @@ $('#clusterHeading').click(function() {
 // load hosts to be accessed later
 </script>
 
-
+<script src="/react/bundle.js"></script>
 <script>
-    // initialize redis obj
-    var redisLive = {
+    var redisLive = new RedisLive({
         // the list of hosts 
         hosts : {{{hosts}}},
         // list of supported commands
         commands: {{{commands}}},
         
         // ui components
-        resultsTextArea : document.getElementById('redisResultsTextarea'),
+        commandOutput : document.getElementById('commandOutput'),
         commandInput : document.getElementById('commandInput'),
-        runButton : document.getElementById('runButton'),
         serverStatus : document.getElementById('serverStatus'),
         clusterStatus : document.getElementById('clusterStatus'),
-    }
+    })
 </script>
-
-<script src="/react/bundle.js">
-</script>
-
 

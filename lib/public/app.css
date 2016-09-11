@@ -1,3 +1,7 @@
+.row .row {
+    padding-left:10px;
+}
+
 .autosuggest  
 {
   width:50%;
