@@ -1,12 +1,11 @@
 {
-  "name": "redis-live",
-  "version": "0.0.2",
+  "name": "redis-live-server",
+  "version": "0.0.3",
   "description": "",
   "main": "lib/public/react/bundle.js",
   "scripts": {
-    "start": "npm run build && node index.js",
-    "compile": "babel --presets react,es2015,stage-0 lib/react/* -d bin --copy-files",
-    "build": "webpack --config webpack.config.js",
+    "start": "npm run compile && node index.js",
+    "compile": "webpack --config webpack.config.js",
     "prepublish": "npm run compile"
   },
   "repository": {
@@ -24,16 +23,16 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "ioredis": "^2.3.0",
-    "json-loader": "^0.5.4",
-    "nconf": "^0.8.4"
+    "nconf": "^0.8.4",
+    "redis-live": "0.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
-    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "react": "^15.3.1",
     "webpack": "^1.13.2"
   }
 }

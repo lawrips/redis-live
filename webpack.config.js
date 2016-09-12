@@ -8,9 +8,7 @@ var config = {
     entry: APP_DIR + '/index.js',
     output: {
         path: BUILD_DIR,
-        filename: 'bundle.js',
-        libraryTarget: 'var',
-        library: 'RedisLive'
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
@@ -21,13 +19,7 @@ var config = {
             query: {
                 presets: ['react', 'es2015', 'stage-0'] 
             }
-        },
-        {
-            test: /\.json$/,
-            exclude: /node_modules/,
-            loader: 'json-loader'
-        }
-        ]
+        }        ]
     },
     resolve: {
     extensions: ['', '.js', '.es6']

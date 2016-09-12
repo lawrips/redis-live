@@ -117,17 +117,8 @@ $('#clusterHeading').click(function() {
 // load hosts to be accessed later
 </script>
 
-<script src="/react/bundle.js"></script>
 <script>
-    var redisLive = new RedisLive({
-        // the list of hosts 
-        hosts : {{{hosts}}},
-        
-        // ui components
-        commandOutput : document.getElementById('commandOutput'),
-        commandInput : document.getElementById('commandInput'),
-        serverStatus : document.getElementById('serverStatus'),
-        clusterStatus : document.getElementById('clusterStatus'),
-    })
+var hosts = {{{hosts}}}
 </script>
 
+<script src="/react/bundle.js"></script>
