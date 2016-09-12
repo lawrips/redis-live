@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/public/react/bundle.js",
   "scripts": {
-    "start": "npm run compile && node index.js",
+    "start": "npm run compile && node server.js",
     "compile": "webpack --config webpack.config.js",
     "prepublish": "npm run compile"
   },
@@ -20,11 +20,18 @@
   "homepage": "https://github.com/lawrips/redis-live#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "debug": "^2.2.0",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "glue": "^4.0.0",
+    "handlebars": "^4.0.5",
+    "handlebars-extend-block": "^1.0.0",
+    "hapi": "^15.0.3",
+    "inert": "^4.0.2",
     "ioredis": "^2.3.0",
     "nconf": "^0.8.4",
-    "redis-live": "0.1.0"
+    "redis-live": "0.1.0",
+    "vision": "^4.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",

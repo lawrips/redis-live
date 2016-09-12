@@ -1,0 +1,27 @@
+{
+    "server": {
+        "app": {
+            "slogan": "Redis-Live, a fast & simple dashboard for Redis"
+        }
+    },
+    "connections": [
+        {
+            "port": 9999,
+            "labels": ["web"]
+        }
+    ],
+    "registrations": [
+        {
+            "plugin":  "./public"
+        },
+        {
+            "plugin":  "./command"
+        },
+        {
+            "plugin":  "./index"
+        },
+        {
+            "plugin":  "./info"
+        }    
+    ]
+}
