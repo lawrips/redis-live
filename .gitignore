@@ -40,3 +40,4 @@ jspm_packages
 config/config.json
 .vscode
 bin
+*.sh

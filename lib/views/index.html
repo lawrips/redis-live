@@ -56,6 +56,26 @@
 <div class="row">
     <div class="col-lg-10">
         <div class="panel panel-default" >
+            <div class="panel-heading"  id="systemHeading">
+                <span style="font-size: x-large; font-weight: lighter;">System Status</span>
+                <span id="systemStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
+            </div>
+            <div class="panel-body"">
+                <div class="row">            
+                    <div class="form-group col-lg-10">
+                        <div class="form-group">
+                            <div id="systemStatus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="panel panel-default" >
             <div class="panel-heading"  id="serverHeading">
                 <span style="font-size: x-large; font-weight: lighter;">Server Status</span>
                 <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to expand)</span>
@@ -110,8 +130,16 @@ let clusterStatusToggle = false;
 $('#clusterHeading').click(function() {
     clusterStatusToggle = !clusterStatusToggle;
     if (clusterStatusToggle) $('#clusterStatusToggle').text('(click to expand)');
-    else $('#cclusterStatus').text('(click to hide)');
+    else $('#clusterStatusToggle').text('(click to hide)');
     $('#clusterStatus').slideToggle();
+})
+
+let systemStatusToggle = false;
+$('#systemHeading').click(function() {
+    systemStatusToggle = !systemStatusToggle;
+    if (systemStatusToggle) $('#systemStatusToggle').text('(click to expand)');
+    else $('#systemStatusToggle').text('(click to hide)');
+    $('#systemStatus').slideToggle();
 })
 
 // load hosts to be accessed later
