@@ -41,3 +41,4 @@ config/config.json
 .vscode
 bin
 *.sh
+lib/public/react/bundle.js
