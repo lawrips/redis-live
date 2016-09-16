@@ -33,5 +33,6 @@ To run:
 
 2. Then:
 ```
+npm install
 npm start
 ```
