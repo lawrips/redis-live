@@ -73,6 +73,26 @@
 <div class="row">
     <div class="col-lg-10">
         <div class="panel panel-default" >
+            <div class="panel-heading"  id="statsHeading">
+                <span style="font-size: x-large; font-weight: lighter;">Charts</span>
+                <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
+            </div>
+            <div class="panel-body"">
+                <div class="row">            
+                    <div class="form-group col-lg-10" id="chartsContainer">
+                        <div class="form-group">
+                            <div id="statsChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="panel panel-default" >
             <div class="panel-heading"  id="serverHeading">
                 <span style="font-size: x-large; font-weight: lighter;">Server Status</span>
                 <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to expand)</span>
@@ -80,10 +100,6 @@
             <div class="panel-body"">
                 <div class="row">            
                     <div class="form-group col-lg-10" id="serverStatusContainer">
-                        <div class="form-group">
-                            <div id="serverSelector"></div>
-                            <div id="statsChart"></div>
-                        </div>
                         <div class="form-group">
                             <div id="serverStatus"></div>
                         </div>
@@ -130,6 +146,14 @@ $('#clusterHeading').click(function() {
     if (clusterStatusToggle) $('#clusterStatusToggle').text('(click to expand)');
     else $('#clusterStatusToggle').text('(click to hide)');
     $('#clusterStatus').slideToggle();
+})
+
+let chartsToggle = false;
+$('#statsHeading').click(function() {
+    chartsToggle = !chartsToggle;
+    if (chartsToggle) $('#chartsToggle').text('(click to expand)');
+    else $('#chartsToggle').text('(click to hide)');
+    $('#statsChart').slideToggle();
 })
 
 let systemStatusToggle = false;
