@@ -1,6 +1,6 @@
 {
   "name": "redis-live-server",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/public/react/bundle.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "inert": "^4.0.2",
     "ioredis": "^2.3.0",
     "nconf": "^0.8.4",
-    "redis-live": "^0.3.2",
-    "redis-stats": "0.0.4",
+    "redis-live": "^0.4.0",
+    "redis-stats": "^0.1.0",
     "vision": "^4.1.0"
   },
   "devDependencies": {
