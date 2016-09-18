@@ -73,9 +73,30 @@
 <div class="row">
     <div class="col-lg-10">
         <div class="panel panel-default" >
+            <div class="panel-heading"  id="sparkHeading">
+                <span style="font-size: x-large; font-weight: lighter;">Spark Lines</span>
+                <span id="sparkStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
+            </div>
+            <div class="panel-body"">
+                <div class="row">            
+                    <div class="form-group col-lg-10" id="sparkContainer">
+                        <div class="form-group">
+                            <div id="sparkChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="panel panel-default" >
             <div class="panel-heading"  id="statsHeading">
-                <span style="font-size: x-large; font-weight: lighter;">Charts</span>
-                <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
+                <span style="font-size: x-large; font-weight: lighter;">System Charts</span>
+                <span id="chartsStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
             </div>
             <div class="panel-body"">
                 <div class="row">            
@@ -154,6 +175,14 @@ $('#statsHeading').click(function() {
     if (chartsToggle) $('#chartsToggle').text('(click to expand)');
     else $('#chartsToggle').text('(click to hide)');
     $('#statsChart').slideToggle();
+})
+
+let sparkToggle = false;
+$('#sparkHeading').click(function() {
+    sparkToggle = !sparkToggle;
+    if (sparkToggle) $('#sparkToggle').text('(click to expand)');
+    else $('#sparkToggle').text('(click to hide)');
+    $('#sparkChart').slideToggle();
 })
 
 let systemStatusToggle = false;
