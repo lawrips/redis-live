@@ -38,6 +38,7 @@ jspm_packages
 
 # Custom
 config/config.json
+config/config.1.json
 .vscode
 bin
 *.sh
