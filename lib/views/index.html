@@ -11,9 +11,19 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h2 style="font-weight: lighter;">
-                    <span>Redis LIVE - a fast & simple Redis dashboard</span>
-                </h2>
+                <div class="row">
+                    <label style="font-size: xx-large; font-weight: lighter; display: block; float:left;" >
+                        <span>Redis LIVE - a fast & simple Redis dashboard</span>
+                    </label>
+
+                    <!-- Place this tag where you want the button to render. -->
+                    <div class="text-right" style="display: inline-block; float: right; padding-right: 20px;">
+                        <a class="github-button" href="https://github.com/lawrips/redis-live/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download on GitHub">Download</a>
+                    </div>
+                </div>
+                <div class="row">
+                    Find out more about Redis Live, download or contrbute on <a href="https://github.com/lawrips/redis-live" style="color:white;">Github</a> 
+                </div>
             </div>
         </div>
     </div>
@@ -198,6 +208,10 @@ $('#systemHeading').click(function() {
 
 <script>
 var hosts = {{{hosts}}}
+var commands = {{{commands}}}
 </script>
 
 <script src="/react/bundle.js"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
