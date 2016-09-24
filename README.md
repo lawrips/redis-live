@@ -16,10 +16,16 @@ Still changing a lot but feel free to use.
 
 Planned features:
 * Authentication 
+* Redis server & cluster creation
+* Setup tools / script
+* More UX
+
+To request a feature, just open a Github issue.
 
 ## Usage
 
 To run:
+
 1 . Download (and unzip) or clone this repo
 
 2 . Create a ./config/config.json with the following values (currently cluster only):
@@ -44,4 +50,4 @@ npm start
 ```
 
 ## Demo
-View Redis Live running against a cluster at [www.redislive.com](www.redislive.com)
+View Redis Live running against a cluster at [www.redislive.com](http://www.redislive.com)
