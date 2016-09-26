@@ -11,6 +11,7 @@ Current features:
 * Cluster support and status 
 * Support for Redis 3.x
 * Whitelisted / blacklisted commands
+* Now capable of recording # of keys, avg_ttl and expiry of keys
 
 Still changing a lot but feel free to use. 
 
