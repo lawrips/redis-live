@@ -1,0 +1,4 @@
+*.sh
+node_modules
+config/config.json
+.vscode
