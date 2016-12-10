@@ -5,203 +5,174 @@
 
 
 <link rel="stylesheet" type="text/css" href="app.css">
+<main>
 
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="row">
-                    <label style="font-size: xx-large; font-weight: lighter; display: block; float:left;" >
-                        <span>Redis LIVE - a fast & simple Redis dashboard</span>
-                    </label>
-
-                    <!-- Place this tag where you want the button to render. -->
-                    <div class="text-right" style="display: inline-block; float: right; padding-right: 20px;">
-                        <a class="github-button" href="https://github.com/lawrips/redis-live/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download on GitHub">Download</a>
-                    </div>
-                </div>
-                <div class="row">
-                    Find out more about Redis Live, download or contrbute on <a href="https://github.com/lawrips/redis-live" style="color:white;">Github</a> 
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="header">
+    <span class="title">redis live</span>
+    <span class="subtitle"> - fast & simple Redis management</span>
 </div>
+<p></p>
 
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span style="font-size: x-large; font-weight: lighter;">Command Line</span>
-            </div>
-            <div class="panel-body">
-                <div class="row" >            
-                    <div class="form-group col-lg-10">
-                        <label>
-                            Enter command:
-                        </label>
-                        <div id="commandInput"></div>
-                    </div>
+<input style="display: none;" id="tab1" type="radio" name="tabs" checked>
+<label class="menu" for="tab1">System Status</label>
+
+<input style="display: none;" id="tab2" type="radio" name="tabs">
+<label class="menu" for="tab2">Server Info</label>
+
+<input style="display: none;" id="tab3" type="radio" name="tabs">
+<label class="menu" for="tab3">Historical Data</label>
+
+<input style="display: none;" id="tab4" type="radio" name="tabs">
+<label class="menu" for="tab4">Command Line</label>
+
+<input style="display: none;" id="tab5" type="radio" name="tabs">
+<label class="menu" for="tab5">Cluster Status</label>
+
+
+
+<section id="content1">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default" >
+                <div class="panel-heading"  id="systemHeading">
+                    <h4>Overall System Status</h4>
                 </div>
-                <div class="row">            
-                    <div class="form-group col-lg-8">
-                        <label>
-                            <br>
-                            Results
-                        </label>
-                        <div id="commandOutput" >
+                <div class="panel-body">
+                    <div class="row">            
+                        <div class="form-group col-lg-10">
+                            <div class="form-group">
+                                <div id="systemStatus"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default" >
-            <div class="panel-heading"  id="systemHeading">
-                <span style="font-size: x-large; font-weight: lighter;">System Status</span>
-                <span id="systemStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
-            </div>
-            <div class="panel-body"">
-                <div class="row">            
-                    <div class="form-group col-lg-10">
-                        <div class="form-group">
-                            <div id="systemStatus"></div>
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default" >
+                <div class="panel-heading"  id="sparkHeading">
+                    <h4>Historical data, at a glance</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">            
+                        <div class="form-group col-lg-10" id="sparkContainer">
+                            <div class="form-group">
+                                <div id="sparkChart"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default" >
-            <div class="panel-heading"  id="sparkHeading">
-                <span style="font-size: x-large; font-weight: lighter;">Spark Lines</span>
-                <span id="sparkStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
-            </div>
-            <div class="panel-body"">
-                <div class="row">            
-                    <div class="form-group col-lg-10" id="sparkContainer">
-                        <div class="form-group">
-                            <div id="sparkChart"></div>
+<section id="content2">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default" >
+                <div class="panel-heading"  id="serverHeading">
+                    <h4>Individual Server Status</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">            
+                        <div class="form-group col-lg-10" id="serverStatusContainer">
+                            <div class="form-group">
+                                <div id="serverStatus"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default" >
-            <div class="panel-heading"  id="statsHeading">
-                <span style="font-size: x-large; font-weight: lighter;">System Charts</span>
-                <span id="chartsStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
-            </div>
-            <div class="panel-body"">
-                <div class="row">            
-                    <div class="form-group col-lg-10" id="chartsContainer">
-                        <div class="form-group">
-                            <div id="statsChart"></div>
+<section id="content3">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default" >
+                <div class="panel-heading"  id="statsHeading">
+                    <h4>Detailed historical data</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">            
+                        <div class="form-group col-lg-10" id="chartsContainer">
+                            <div class="form-group">
+                                <div id="statsChart"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default" >
-            <div class="panel-heading"  id="serverHeading">
-                <span style="font-size: x-large; font-weight: lighter;">Server Status</span>
-                <span id="serverStatusToggle" style="font-size: larger; font-weight: lighter;">(click to expand)</span>
-            </div>
-            <div class="panel-body"">
-                <div class="row">            
-                    <div class="form-group col-lg-10" id="serverStatusContainer">
-                        <div class="form-group">
-                            <div id="serverStatus"></div>
+<section id="content4">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Command Line</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row" >            
+                        <div class="form-group col-lg-10">
+                            <p>
+                                Enter command:
+                            </p>
+                            <div id="commandInput"></div>
+                        </div>
+                    </div>
+                    <div class="row">            
+                        <div class="form-group col-lg-10">
+                            <label>
+                                <br>
+                                Results
+                            </label>
+                            <div id="commandOutput" >
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="row">
-    <div class="col-lg-10">
-        <div class="panel panel-default"  id="clusterHeading">
-            <div class="panel-heading">
-                <span style="font-size: x-large; font-weight: lighter;">Cluster Status</span>
-                <span id="clusterStatusToggle" style="font-size: larger; font-weight: lighter;">(click to hide)</span>
-            </div>
-            <div class="panel-body"">
-                <div class="row">            
-                    <div class="form-group col-lg-12">
-                        <div class="form-group">
-                            <div id="clusterStatus"></div>
+{{#if cluster}}
+<section id="content5">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default"  id="clusterHeading">
+                <div class="panel-heading">
+                    <h4>Cluster Status</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">            
+                        <div class="form-group col-lg-12">
+                            <div class="form-group">
+                                <div id="clusterStatus"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+{{/if}}
+
+<p>Find out more about Redis Live, download or contrbute on <a href="https://github.com/lawrips/redis-live">Github</a> 
+</p>
+
+</main>
 
 <script>
-let serverStatusToggle = false;
-$('#serverStatusContainer').toggle();
-$('#serverHeading').click(function() {
-    serverStatusToggle = !serverStatusToggle;
-    if (serverStatusToggle) $('#serverStatusToggle').text('(click to expand)');
-    else $('#serverStatusToggle').text('(click to hide)');
-    $('#serverStatusContainer').slideToggle();
-})
 
-let clusterStatusToggle = false;
-$('#clusterHeading').click(function() {
-    clusterStatusToggle = !clusterStatusToggle;
-    if (clusterStatusToggle) $('#clusterStatusToggle').text('(click to expand)');
-    else $('#clusterStatusToggle').text('(click to hide)');
-    $('#clusterStatus').slideToggle();
-})
-
-let chartsToggle = false;
-$('#statsHeading').click(function() {
-    chartsToggle = !chartsToggle;
-    if (chartsToggle) $('#chartsToggle').text('(click to expand)');
-    else $('#chartsToggle').text('(click to hide)');
-    $('#statsChart').slideToggle();
-})
-
-let sparkToggle = false;
-$('#sparkHeading').click(function() {
-    sparkToggle = !sparkToggle;
-    if (sparkToggle) $('#sparkToggle').text('(click to expand)');
-    else $('#sparkToggle').text('(click to hide)');
-    $('#sparkChart').slideToggle();
-})
-
-let systemStatusToggle = false;
-$('#systemHeading').click(function() {
-    systemStatusToggle = !systemStatusToggle;
-    if (systemStatusToggle) $('#systemStatusToggle').text('(click to expand)');
-    else $('#systemStatusToggle').text('(click to hide)');
-    $('#systemStatus').slideToggle();
-})
 
 // load hosts to be accessed later
 </script>
