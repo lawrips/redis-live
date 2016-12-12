@@ -11,35 +11,35 @@
     <span class="title">redis live</span>
     <span class="subtitle"> - fast & simple Redis management</span>
 </div>
-<p></p>
+<div class="space"></div>
 
 <input style="display: none;" id="tab1" type="radio" name="tabs" checked>
-<label class="menu" for="tab1">System Status</label>
+<label class="menu" for="tab1"> System Status</label>
 
 <input style="display: none;" id="tab2" type="radio" name="tabs">
-<label class="menu" for="tab2">Server Info</label>
+<label class="menu" for="tab2"> Server Info</label>
 
 <input style="display: none;" id="tab3" type="radio" name="tabs">
-<label class="menu" for="tab3">Historical Data</label>
+<label class="menu" for="tab3"> Historical Data</label>
 
 <input style="display: none;" id="tab4" type="radio" name="tabs">
-<label class="menu" for="tab4">Command Line</label>
+<label class="menu" for="tab4"> Command Line</label>
 
 <input style="display: none;" id="tab5" type="radio" name="tabs">
-<label class="menu" for="tab5">Cluster Status</label>
+<label class="menu" for="tab5"> Cluster Status</label>
 
 
 
 <section id="content1">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="panel panel-default" >
                 <div class="panel-heading"  id="systemHeading">
                     <h4>Overall System Status</h4>
                 </div>
                 <div class="panel-body">
                     <div class="row">            
-                        <div class="form-group col-lg-10">
+                        <div class="form-group col-lg-12">
                             <div class="form-group">
                                 <div id="systemStatus"></div>
                             </div>
@@ -50,14 +50,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="panel panel-default" >
                 <div class="panel-heading"  id="sparkHeading">
                     <h4>Historical data, at a glance</h4>
                 </div>
                 <div class="panel-body">
                     <div class="row">            
-                        <div class="form-group col-lg-10" id="sparkContainer">
+                        <div class="form-group col-lg-12" id="sparkContainer">
                             <div class="form-group">
                                 <div id="sparkChart"></div>
                             </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">            
-                        <div class="form-group col-lg-10" id="serverStatusContainer">
+                        <div class="form-group col-lg-8" id="serverStatusContainer">
                             <div class="form-group">
                                 <div id="serverStatus"></div>
                             </div>
@@ -92,14 +92,14 @@
 
 <section id="content3">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="panel panel-default" >
                 <div class="panel-heading"  id="statsHeading">
                     <h4>Detailed historical data</h4>
                 </div>
                 <div class="panel-body">
                     <div class="row">            
-                        <div class="form-group col-lg-10" id="chartsContainer">
+                        <div class="form-group col-lg-12" id="chartsContainer">
                             <div class="form-group">
                                 <div id="statsChart"></div>
                             </div>
@@ -113,14 +113,14 @@
 
 <section id="content4">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Command Line</h4>
                 </div>
                 <div class="panel-body">
                     <div class="row" >            
-                        <div class="form-group col-lg-10">
+                        <div class="form-group col-lg-12">
                             <p>
                                 Enter command:
                             </p>
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="row">            
-                        <div class="form-group col-lg-10">
+                        <div class="form-group col-lg-12">
                             <label>
                                 <br>
                                 Results
@@ -146,7 +146,7 @@
 {{#if cluster}}
 <section id="content5">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="panel panel-default"  id="clusterHeading">
                 <div class="panel-heading">
                     <h4>Cluster Status</h4>

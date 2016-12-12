@@ -142,7 +142,7 @@ tr:hover{background-color:lightblue}
 
 .header {
   background-color: #FFF;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   padding-top: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -185,6 +185,10 @@ tr:hover{background-color:lightblue}
   color: #721515;
   font-size: 30px;
   display: inline-block;
+}
+
+.space {
+    padding-bottom: 25px;
 }
 
 p {

@@ -31,7 +31,7 @@
     "inert": "^4.0.2",
     "ioredis": "^2.3.0",
     "nconf": "^0.8.4",
-    "redis-live": "^0.4.1",
+    "redis-live": "^0.4.2",
     "redis-stats": "^0.3.2",
     "request": "^2.75.0",
     "vision": "^4.1.0"
