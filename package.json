@@ -1,6 +1,6 @@
 {
   "name": "redis-live-server",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "",
   "main": "lib/public/react/bundle.js",
   "scripts": {
@@ -20,10 +20,7 @@
   "homepage": "https://github.com/lawrips/redis-live#readme",
   "dependencies": {
     "async": "^2.0.1",
-    "body-parser": "^1.15.2",
     "debug": "^2.2.0",
-    "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
     "glue": "^4.0.0",
     "handlebars": "^4.0.5",
     "handlebars-extend-block": "^1.0.0",
