@@ -3,7 +3,7 @@
 ## Current Status
 A front end UX for redis, built in Node.js and React. While this project is early it is functional, operational. You can view a demo at [www.redislive.com](http://www.redislive.com).
 
-Current features of Redis Live:
+Current features of Redis Live (v0.4.3):
 
 * Redis console for free form querying (e.g. "SET hello world", "GET hello")
 * Autocompletion and whitelisted / blacklisted commands
