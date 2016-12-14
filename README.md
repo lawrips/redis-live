@@ -1,7 +1,5 @@
 ![Redis Live](./lib/public/img/logo.png)
 
-# Redis Live
-
 ## Current Status
 A front end UX for redis, built in Node.js and React providing a quick, glancable view of all the Redis servers in your cluster as well as a historical view of key metrics (e.g. used memory, # keys, etc). 
 
@@ -28,7 +26,52 @@ Features under consideration for the future (particularly if I get demand / requ
 
 To request a feature, just open a Github issue.
 
-## Setup / Configuration 
+
+
+## Running using Node.js
+To run using Node.js, simply:
+
+1. Download (and unzip) or clone this repo
+2. Create a configuration file ./config/config.json (instructions in the [configuration section](#configuration))
+3. Then run:
+
+```
+npm i
+npm start
+```
+
+You can now browse to http://localhost:9999 to see the Redis Live dashboard. If you want to change the default port, change the environment variable PORT. For example:
+
+```
+export PORT=80
+```
+
+## Running as a Docker Container
+Alternatively, you can run Redis Live in a docker container.
+
+1. To build the docker image, you can either do this manually from the git repo, or pull down the latest version from the public docker registry:
+
+```
+docker pull lawrips/redis-live
+```
+
+2. Then create a configuration file that Redis Live will need to locate your redis servers (instructions in the [configuration section](#configuration))
+ 
+
+3. The use the following startup script: 
+
+```
+docker run -d --restart=always -it -p 80:9999 \
+-e "PORT"=9999 \
+-v [path_to_your_config.json]:/usr/src/app/config/config.json lawrips/redis-live
+```
+
+This will make redis-live available on port 80, and also map the config file you created in the previous section. Make sure to replace [path_to_your_config.json] with the absolute path on your local machine so the Docker host knows how to map the file. 
+
+You can now browse to http://localhost to see the Redis Live dashboard. 
+
+
+## Configuration 
 
 Before you can run Redis Live, it needs to know where to find your Redis server(s). To do this, create a file with the following setup:
 
@@ -85,47 +128,6 @@ To connect to a cluster of six servers, use config in the following format:
 ```
 
 An example of this file [can be found here](./config/config_cluster_sample.json).
-
-
-Once you've created this file, you're ready to start:
-
-
-## Running using Node.js
-To run using Node.js, simply:
-
-1. Download (and unzip) or clone this repo
-2. Save the setup file you created in the previous section and copy it to [path_to_redis_live]/config/config.json
-3. Then run:
-
-```
-npm i
-npm start
-```
-
-You can now browse to http://localhost:9999 to see the Redis Live dashboard. If you want to change the default port, change the environment variable PORT. For example:
-
-```
-export PORT=80
-```
-
-## Running as a Docker Container
-Alternatively, you can run Redis Live in a docker container. To build the docker image, you can either do this manually from the git repo, or pull down the latest version from the public docker registry:
-
-```
-docker pull lawrips/redis-live
-```
-
-Once you have the image, the following is required in a startup script: 
-
-```
-docker run -d --restart=always -it -p 80:9999 \
--e "PORT"=9999 \
--v [path_to_your_config.json]:/usr/src/app/config/config.json lawrips/redis-live
-```
-
-This will make redis-live available on port 80, and also map the config file you created in the previous section. Make sure to replace [path_to_your_config.json] with the absolute path on your local machine so the Docker host knows how to map the file. 
-
-You can now browse to http://localhost to see the Redis Live dashboard. 
 
 ## Advanced options
 
