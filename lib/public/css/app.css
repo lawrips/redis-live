@@ -149,7 +149,7 @@ tr:hover{background-color:lightblue}
   box-sizing: border-box;
   position: relative;
   text-align: left;
-}
+  }
 
 .header::after{
     content:'';
@@ -160,20 +160,15 @@ tr:hover{background-color:lightblue}
     height: 3px;
     background: #333;
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, hsla(0, 0%, 0%, 0)), color-stop(50%, hsla(0, 0%, 0%, .75)), color-stop(100%, hsla(0, 0%, 0%, 0)));
-    background: -webkit-linear-gradient(left, #430000, #FFF 100%);
-    background: -moz-linear-gradient(left, #430000, #FFF 100%);
-    background: -ms-linear-gradient(left, #430000, #FFF 100%);
-    background: -o-linear-gradient(left, #430000, #FFF 100%);
-    background: linear-gradient(left, #430000, #FFF 100%);
+    background: -webkit-linear-gradient(left, #83000A, #FFF 100%);
+    background: -moz-linear-gradient(left, #83000A, #FFF 100%);
+    background: -ms-linear-gradient(left, #83000A, #FFF 100%);
+    background: -o-linear-gradient(left, #83000A, #FFF 100%);
+    background: linear-gradient(left, #83000A, #FFF 100%);
 }
 
 
 .title {
-  font-family: 'Helvetica', 'Arial', sans-serif;
-  font-weight: 100;
-  text-align: left;
-  color: #721515;
-  font-size: 40px;
   display: inline-block;
   padding-left: 5px;
 }
@@ -182,9 +177,11 @@ tr:hover{background-color:lightblue}
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-weight: 100;
   text-align: left;
-  color: #721515;
+  color: #AC000D;
   font-size: 30px;
   display: inline-block;
+  vertical-align: bottom;
+  padding-bottom: 2px;
 }
 
 .space {
@@ -231,9 +228,9 @@ label:hover {
 }
 
 input:checked + label {
-  color: #9A3232;
+  color: #AC000D;
   border: 1px solid #ddd;
-  border-top: 2px solid #721515;
+  border-top: 2px solid #83000A;
   border-bottom: 1px solid #fff;
 }
 
