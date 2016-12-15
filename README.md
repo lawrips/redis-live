@@ -40,10 +40,10 @@ npm i
 npm start
 ```
 
-You can now browse to http://localhost:9999 to see the Redis Live dashboard. If you want to change the default port, change the environment variable PORT. For example:
+You can now browse to http://localhost:9999 to see the Redis Live dashboard. If you want to change the default port, change the environment variable PORT. For example (MacOS):
 
 ```
-export PORT=80
+export PORT=10000
 ```
 
 ## Running as a Docker Container
@@ -67,6 +67,8 @@ docker run -d --restart=always -it -p 80:9999 \
 ```
 
 This will make redis-live available on port 80, and also map the config file you created in the previous section. Make sure to replace [path_to_your_config.json] with the absolute path on your local machine so the Docker host knows how to map the file. 
+
+NOTE - if you're working with Docker for development against local Redis server(s), you'll need to do some port mapping magic to get Docker to talk to your host Redis. 
 
 You can now browse to http://localhost to see the Redis Live dashboard. 
 
@@ -128,6 +130,9 @@ To connect to a cluster of six servers, use config in the following format:
 ```
 
 An example of this file [can be found here](./config/config_cluster_sample.json).
+
+## Historical stats
+Redis Live uses another library called Redis Stats (which I also wrote) to generate historical data over time using the redis INFO command. This library gets auto installed and started with Redis Live and uses the standard redis INFO command to generate statistics such as total number of keys, used memory, uptime, etc. The data is recorded at regular intervals and then stored back into the same Redis server where it's consumed by Redis Live (or can be accessed directly for your own purposes). [Find out more about this library here](https://www.npmjs.com/package/redis-stats).  
 
 ## Advanced options
 
