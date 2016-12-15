@@ -3,7 +3,9 @@
 ## Current Status
 A front end UX for redis, built in Node.js and React providing a quick, glancable view of all the Redis servers in your cluster as well as a historical view of key metrics (e.g. used memory, # keys, etc). 
 
-While this project is early it is functional, operational. You can view a demo at [www.redislive.com](http://www.redislive.com).
+While this project is early it is functional and operational. There are examples of this being used in production, but I recommend using this in test / dev environments at this early stage. Also, only run this in a secure network until auth and additional security are added (or secure access to any machine running Redis Live).
+
+You can view a live demo of Redis Live at [www.redislive.com](http://www.redislive.com).
 
 Current features of Redis Live (v0.4.5):
 
@@ -15,8 +17,6 @@ Current features of Redis Live (v0.4.5):
 * Responsive UX
 * Tested / support for Redis 3.x
 
-Currently, recommend running this only in a secure network (until auth and additional security is added).
-
 Features under consideration for the future (particularly if I get demand / requests):
 
 * Authentication 
@@ -25,7 +25,6 @@ Features under consideration for the future (particularly if I get demand / requ
 * Additional UX
 
 To request a feature, just open a Github issue.
-
 
 
 ## Running using Node.js
